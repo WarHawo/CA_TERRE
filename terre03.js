@@ -2,13 +2,13 @@
 */
 
 function alphabetAt() {
-  const  myArgv = process.argv.slice(2)
-  const letter = myArgv[0];
+  const  argOutput = process.argv.slice(2)
+  const myArgv = argOutput[0];
   let abc = [];
-  let i = letter.charCodeAt(0);
+  let i = myArgv.charCodeAt(0);
 
-  if ((letter.length > 1) || (i < 97 || i > 122)){ 
-    return "Please enter a minisul letter "
+  if ((myArgv.length > 1) || (i < 97 || i > 122)){ 
+    return "Seulement une lettres en miniscules est acceptée"
   } else {
     for (; i <= 122 ; i++) {
       abc += String.fromCharCode(i);
