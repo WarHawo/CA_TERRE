@@ -8,7 +8,7 @@ function myDiv() {
   let result = Math.floor(a / b);
   let reste = a % b ;
 
-  if ( isNaN(res) || result == 0 || b == 0 ) {
+  if ( isNaN(result) || result == 0 || b == 0 ) {
     return "erreur";
   } else {
     return ('resultat: ' +  result + '\nreste: ' +  reste);
