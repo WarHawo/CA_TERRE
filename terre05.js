@@ -2,8 +2,17 @@
 
 function myDiv() {
   const myArgv = process.argv.slice(2);
-  const 
-  return myArgv;
+  const a = myArgv[0];
+  const b = myArgv[1];
+
+  let result = Math.floor(a / b);
+  let reste = a % b ;
+
+  if ( isNaN(res) || result == 0 || b == 0 ) {
+    return "erreur";
+  } else {
+    return ('resultat: ' +  result + '\nreste: ' +  reste);
+  }
 }
 
 console.log(myDiv());
