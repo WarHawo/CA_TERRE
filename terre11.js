@@ -10,6 +10,8 @@ function transformTo12() {
   let minute = "";
   let token = ":";
   
+  if(!myArgv)
+    return "erreur";
   if (myArgv.length !== 5 || (myArgv.indexOf(token) == -1)) {
     return "erreur: mauvais format";
   }
