@@ -13,4 +13,4 @@ function printName() {
 
 console.log(printName());
 
-/* process.argv.slice(1) retourn un table contenant les aguments tab[0] chemin du fichier tab[1] = premier argument */
+/* process.argv.slice(1) retourne un table contenant les arguments tab[0]=chemin du fichier tab[1] = premier argument */

@@ -5,17 +5,15 @@ function pairImpair() {
   const myArgv = argOutput[0];
 
   if (!myArgv || argOutput[1])
-     return "Tu ne me la mettras pas à l’envers.";
+     return "Erreur: veuillez donner en argument un entier";
   let num = Number(myArgv);
-  if (!isNaN(num)) {
-    if ((num % 2) == 0) {
+  if (!isNaN(num) && myArgv.indexOf('.') == -1) {
+    if ((num % 2) == 0) 
       return "pair";
-    } else {
-      return "impair";
-    }
-  } else {
-     return "Tu ne me la mettras pas à l’envers.";
-    }
+    return "impair";
+
+  }
+  return "Tu ne me la mettras pas à l’envers.";
 }
 
 console.log(pairImpair());

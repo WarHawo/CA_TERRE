@@ -3,14 +3,11 @@ function transformTo24(time) {
   let minute = "";
   let token = ":";
   
-  if(!time)
-    return "erreur";
-  if (time.length !== 7 || (time.indexOf(token) == -1)) {
-    return "erreur: mauvais format";
-  }
-  if ((time.indexOf("AM") == -1) && (time.indexOf("PM") == -1)) {
-    return "mauvais format";
-  }
+  if (!time || time.length !== 7 || (time.indexOf(token) == -1))
+    return "Erreur: entrez en argument une heure en format 24h (node ./terre11.js '01:34PM')";
+  if ((time.indexOf("AM") == -1) && (time.indexOf("PM") == -1))
+    return "Erreur: entrez en argument une heure en format 24h (node ./terre11.js '12:34')";
+  
   for(let i = 0; i < time.length ; i++) {
     if (time[i] !== token && hour.length < 2)
       hour += time[i];
@@ -21,13 +18,14 @@ function transformTo24(time) {
           minute += time[i + 1];
     }
   }
+
   if (isNaN(Number(hour)) || isNaN(Number(minute))
       || (Number(hour) > 23 || Number(minute) > 59)) {
-    return "erreur: veuillez rentrer une vrai heure";
+    return "Erreur: veuillez rentrer une vrai heure";
   }
 
  if (Number(hour) > 13)
-      return "erreur: mauvais format";
+    return "Erreur: veuillez rentrer une vrai heure";
   if (time.indexOf("AM") == -1) //heure format 02:50P.M
   {
     if (Number(hour) == 12) {
@@ -35,15 +33,15 @@ function transformTo24(time) {
      return hour + token + minute;
     }
     if (Number(hour) == 0)
-      return "erreur: mauvais format";
+    return "Erreur: veuillez rentrer une vrai heure";
     if (Number(hour) < 12)
       hour = Number(hour) + 12;
     return hour + token + minute;
   }
-    return hour + token + minute;
+  return hour + token + minute;
 }
 
 
 const argvOutPut = process.argv.slice(2);
 const myArgv = argvOutPut[0];
-console.log( transformTo24(myArgv))
+console.log(transformTo24(myArgv))

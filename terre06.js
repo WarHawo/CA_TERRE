@@ -5,9 +5,9 @@ function inversStr() {
   const myArgv = argOutput[0];
   let result = "";
 
-  if (argOutput[1] || !myArgv ) {
-    return "only one argument is autorized"
-  } else {
+  if (argOutput[1] || !myArgv )
+    return "Erreur: seulement une seule chaîne de caractères est autorisée en argument";
+  else {
     for (let i = (myArgv.length) -1  ; i >= 0 ; i--) {
         result += myArgv[i];
       }

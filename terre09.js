@@ -1,13 +1,14 @@
 /* Programme qui affiche la racine carrée d’un entier positif. */
 
-function mySqrt() {
-  const myArgv = process.argv.slice(2);
+function mySqrt(myArgv) {
   const a = Number(myArgv[0]);
 
   if (isNaN(a) || a < 0 || myArgv[1]) {
-    return "erreur";
+    return "Erreur : donnez un chiffre positif en argument";
   } else {
     return Math.sqrt(a);
   }
 }
-console.log(mySqrt());
+
+const myArgv = process.argv.slice(2);
+console.log(mySqrt(myArgv));
