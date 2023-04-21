@@ -11,6 +11,6 @@ function printName() {
 }
 
 
-console.log(process.argv.slice(0));
+console.log(printName());
 
 /* process.argv.slice(1) retourn un table contenant les aguments tab[0] chemin du fichier tab[1] = premier argument */

@@ -5,7 +5,7 @@
 function alphabet() {
   let abc = [];
 
-  for (let i = 97; i < 122 ; i++) {
+  for (let i = 97; i < 123 ; i++) {
     abc += String.fromCharCode(i);
   }
   return abc;

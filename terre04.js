@@ -3,7 +3,9 @@
 function pairImpair() {
   const argOutput = process.argv.slice(2)
   const myArgv = argOutput[0];
-  
+
+  if (!myArgv || argOutput[1])
+     return "Tu ne me la mettras pas à l’envers.";
   let num = Number(myArgv);
   if (!isNaN(num)) {
     if ((num % 2) == 0) {
