@@ -1,27 +1,24 @@
-function transformTo24() {
-  const argvOutPut = process.argv.slice(2);
-  const myArgv = argvOutPut[0];
-
+function transformTo24(time) {
   let hour = "";
   let minute = "";
   let token = ":";
   
-  if(!myArgv)
+  if(!time)
     return "erreur";
-  if (myArgv.length !== 7 || (myArgv.indexOf(token) == -1)) {
+  if (time.length !== 7 || (time.indexOf(token) == -1)) {
     return "erreur: mauvais format";
   }
-  if ((myArgv.indexOf("AM") == -1) && (myArgv.indexOf("PM") == -1)) {
+  if ((time.indexOf("AM") == -1) && (time.indexOf("PM") == -1)) {
     return "mauvais format";
-      }
-  for(let i = 0; i < myArgv.length ; i++) {
-    if (myArgv[i] !== token && hour.length < 2)
-      hour += myArgv[i];
-    if(myArgv[i] == token && myArgv[i + 1]) {
+  }
+  for(let i = 0; i < time.length ; i++) {
+    if (time[i] !== token && hour.length < 2)
+      hour += time[i];
+    if(time[i] == token && time[i + 1]) {
       i++;
-      minute += myArgv[i];
-      if (myArgv[i + 1])
-          minute += myArgv[i + 1];
+      minute += time[i];
+      if (time[i + 1])
+          minute += time[i + 1];
     }
   }
   if (isNaN(Number(hour)) || isNaN(Number(minute))
@@ -31,7 +28,7 @@ function transformTo24() {
 
  if (Number(hour) > 13)
       return "erreur: mauvais format";
-  if (myArgv.indexOf("AM") == -1) //heure format 02:50P.M
+  if (time.indexOf("AM") == -1) //heure format 02:50P.M
   {
     if (Number(hour) == 12) {
       hour = 0;
@@ -46,4 +43,7 @@ function transformTo24() {
     return hour + token + minute;
 }
 
-console.log( transformTo24())
+
+const argvOutPut = process.argv.slice(2);
+const myArgv = argvOutPut[0];
+console.log( transformTo24(myArgv))
