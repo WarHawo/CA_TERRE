@@ -2,39 +2,26 @@
 
 /* if heure supp à 12 faire heure -12 et rajouter PM sinon juste rajouter AM*/
 
-function transformTo12(myArgv) {
-  let hour = "";
-  let minute = "";
-  let token = ":";
+function transformTo12() {
+  const myArgv = process.argv[2];
+  let hour = myArgv[0] + myArgv[1] - 0;
+  let minute = myArgv[3] + myArgv[4] - 0;
+  let token =":"
+
+  if (!myArgv || process.argv[3] || myArgv.length !== 5 || !myArgv.indexOf(token))
+    return 'Erreur: entrez en argument une heure en format 24h (node ./terre11.js "12:34")';
+  if (isNaN(hour) || isNaN(minute) || hour > 23 || minute > 59)
+    return 'Erreur: entrez en argument une heure en format 24h (node ./terre11.js "12:34")';
   
-  if (!myArgv || myArgv.length !== 5 || (myArgv.indexOf(token) == -1))
-    return "Erreur: entrez en argument une heure en format 24h (node ./terre11.js '12:34')";
-  for(let i = 0; i < myArgv.length ; i++) {
-    if (myArgv[i] !== token && hour.length < 2)
-      hour += myArgv[i];
-    if(myArgv[i] == token && myArgv[i + 1]) {
-      i++;
-      minute += myArgv[i];
-      if (myArgv[i + 1])
-          minute += myArgv[i + 1];
-    }
-  }
-  if (isNaN(Number(hour)) || isNaN(Number(minute))
-      || (Number(hour) > 23 || Number(minute) > 59)) {
-    return "Erreur: entrez en argument une heure en format 24h (node ./terre11.js '12:34')";
-  }
-  if (Number(hour) > 12) {
-    hour = Number(hour) - 12;
+  if (hour== 12)
+     return hour + token + minute + " PM";
+  else if (hour == 00)
+    return 12 + token + minute + " AM";
+  else if (hour > 12) {
+    hour = hour - 12;
     return hour + token + minute + " PM";
   }
-  else if (Number(hour) == 12)
-     return hour + token + minute + " PM";
-  else if (Number(hour) == 00)
-    return 12 + token + minute + " AM";
-
-  return hour + token + minute;
+  return hour + token + minute + " AM";
 }
 
-const argvOutPut = process.argv.slice(2);
-const myArgv = argvOutPut[0];
-console.log( transformTo12(myArgv));
+console.log( transformTo12());

@@ -1,47 +1,32 @@
-function transformTo24(time) {
-  let hour = "";
-  let minute = "";
-  let token = ":";
-  
-  if (!time || time.length !== 7 || (time.indexOf(token) == -1))
-    return "Erreur: entrez en argument une heure en format 24h (node ./terre11.js '01:34PM')";
-  if ((time.indexOf("AM") == -1) && (time.indexOf("PM") == -1))
-    return "Erreur: entrez en argument une heure en format 24h (node ./terre11.js '12:34')";
-  
-  for(let i = 0; i < time.length ; i++) {
-    if (time[i] !== token && hour.length < 2)
-      hour += time[i];
-    if(time[i] == token && time[i + 1]) {
-      i++;
-      minute += time[i];
-      if (time[i + 1])
-          minute += time[i + 1];
-    }
-  }
+/* programme qui transforme une heure affichée en format 12h en une heure affichée au format 24h. */
 
-  if (isNaN(Number(hour)) || isNaN(Number(minute))
-      || (Number(hour) > 23 || Number(minute) > 59)) {
-    return "Erreur: veuillez rentrer une vrai heure";
-  }
+function transformTo24() {
+  const myArgv = process.argv[2];
+  let hour = myArgv[0] + myArgv[1] - 0;
+  let minute = myArgv[3] + myArgv[4] - 0;
+  let token = ":"
+  
+  if (!myArgv || process.argv[3] || myArgv.length !== 7 || !myArgv.indexOf(token))
+    return 'Erreur: entrez en argument une heure en format 12h (node ./terre11.js "12:34PM")';
+  if (isNaN(hour) || isNaN(minute) || hour > 23 || minute > 59)
+    return 'Erreur: entrez en argument une heure en format 12h (node ./terre11.js "12:34PM")';
+  if ((myArgv.indexOf("AM") == -1) && (myArgv.indexOf("PM") == -1))
+    return 'Erreur: entrez en argument une heure en format 12h (node ./terre11.js "12:34PM")';
 
- if (Number(hour) > 13)
-    return "Erreur: veuillez rentrer une vrai heure";
-  if (time.indexOf("AM") == -1) //heure format 02:50P.M
+    if (myArgv.indexOf("AM") == -1) //heure format 02:50PM
   {
-    if (Number(hour) == 12) {
-      hour = 0;
-     return hour + token + minute;
-    }
-    if (Number(hour) == 0)
-    return "Erreur: veuillez rentrer une vrai heure";
-    if (Number(hour) < 12)
-      hour = Number(hour) + 12;
+    if (hour == 0)
+      return "Erreur: 00:00PM n'existe pas c'est 00.00AM"
+    else if (hour == 12)
+      return "00" + token + minute;
+    else if (hour < 12)
+      hour += 12;
     return hour + token + minute;
   }
+  if (hour > 12)
+    return "Erreur: remplacer AM par PM";
   return hour + token + minute;
+
+
 }
-
-
-const argvOutPut = process.argv.slice(2);
-const myArgv = argvOutPut[0];
-console.log(transformTo24(myArgv))
+console.log(transformTo24());

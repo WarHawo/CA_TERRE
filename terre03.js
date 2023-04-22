@@ -2,21 +2,21 @@
 */
 
 function alphabetAt() {
-  const  argOutput = process.argv.slice(2)
-  const myArgv = argOutput[0];
+
+  const myArgv = process.argv[2];
   let abc = [];
-  if (!myArgv || argOutput[1])
+
+  if (!myArgv || myArgv.length > 1)
     return "Erreur: donnez en argument une lettre minuscules";
   let i = myArgv.charCodeAt(0);
 
-  if ((myArgv.length > 1) || (i < 97 || i > 122)){ 
-    return "Erreur : seulement une lettre en miniscule est acceptée"
-  } else {
+  if ((i > 97 && i < 122)){ 
     for (; i <= 122 ; i++) {
       abc += String.fromCharCode(i);
     }
+    return (abc);
   }
-  return (abc);
+  return "Erreur: seulement une lettre en miniscule est acceptée"
 }
 
 console.log(alphabetAt());

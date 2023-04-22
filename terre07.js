@@ -2,13 +2,12 @@
 */
 
 function inversStr() {
-  const argOutput = process.argv.slice(2);
-  const myArgv = argOutput[0];
+  const myArgv = process.argv[2];
 
-  if (isNaN(Number(myArgv)) && myArgv && !argOutput[1])
+  if (isNaN(Number(myArgv)) && myArgv && !process.argv[3])
     return myArgv.length;
   else
     return "Erreur: seulement une seule chaîne de caractères est autorisée en argument";
 }
 
-console.log(inversStr());
+console.log(inversStr()); 

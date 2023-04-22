@@ -1,11 +1,10 @@
 /* Un programme qui affiche son nom de fichier */
 
 function printName() {
-  let result = "" ; 
-  const myArgv = process.argv.slice(1);
-  let title = myArgv[0].split('/');
+  const myArgv = process.argv[1];
+  let title = myArgv.split('/');
   
-  result = title[title.length - 1]; 
+  let result = title[title.length - 1]; 
 
   return result;
 }

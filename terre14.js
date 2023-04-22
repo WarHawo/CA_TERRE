@@ -1,10 +1,12 @@
 /* programme qui détermine si une liste d’entiers est triée ou pas.
 */
 
-function suisse(arg)
+function triee()
 {
+  const arg = process.argv.slice(2);
   let num = [];
-  if (!arg)
+
+  if (!arg[1])
     return "Erreur: entrer en paramètre des entiers";
   for (let i = 0, j = 0; i < arg.length; i++) {
     num[j]= Number(arg[i]);
@@ -12,12 +14,20 @@ function suisse(arg)
     if (isNaN(Number(arg[i])))
       return "Erreur: entrer en paramètre des entiers";
   }
-  for (let i = 0; i < num.length - 1 ; i++) {
-    if (num[i] > num[i + 1])
-      return "Pas triée !";
+  if (num[0] > num[1]) {
+    for (let i = 1; i < num.length - 1 ; i++) {
+      if (num[i] < num[i + 1])
+        return "Pas triée !";
+    }
+  }
+  else if (num[0] <= num[1])
+  { 
+    for (let i = 1; i < num.length - 1 ; i++) {
+      if (num[i] > num[i + 1])
+        return "Pas triée !";
+    }
   }
   return "Triée !"
 }
 
-const arg = process.argv.slice(2);
-console.log(suisse(arg));
+console.log(triee());
